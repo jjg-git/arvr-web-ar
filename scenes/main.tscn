@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://27caatfqv2p1"]
+
+[ext_resource type="Script" uid="uid://bil6dhhqmlvqq" path="res://scenes/main.gd" id="1_o5qli"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+material = SubResource("StandardMaterial3D_jyhfs")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tefeu"]
+material = SubResource("StandardMaterial3D_tbgi4")
+radius = 1.125
+height = 3.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_o5qli")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+current = true
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.091018, 0)
+current = true
+
+[node name="Floor" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74335, 1.5, 5.310402)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../Floor")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4802876, 1.5, -4.437931)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../Floor")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.286175, 1.5, -5.06098)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../Floor")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1648026, 1.5, -2.1218996)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../Floor")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9488354, 1.5, 2.950921)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../Floor")
+
+[node name="PermissionXRBtn" type="Button" parent="."]
+offset_left = 492.0
+offset_top = 393.0
+offset_right = 668.0
+offset_bottom = 480.0
+text = "Enable WebXR"
+
+[connection signal="pressed" from="PermissionXRBtn" to="." method="_permission_pressed"]
