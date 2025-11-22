@@ -1,16 +1,8 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
-
 config_version=5
 
 [application]
 
-config/name="ARVR-WebAR"
+config/name="ARVR-WebAR Real"
 run/main_scene="uid://27caatfqv2p1"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
@@ -22,14 +14,10 @@ version_control/autoload_on_startup=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 
 [xr]
 
-openxr/enabled=true
-openxr/environment_blend_mode=2
-openxr/foveation_level=3
-openxr/foveation_dynamic=true
-openxr/submit_depth_buffer=true
 shaders/enabled=true

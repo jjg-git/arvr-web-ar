@@ -1,6 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://27caatfqv2p1"]
+[gd_scene load_steps=17 format=3 uid="uid://27caatfqv2p1"]
 
 [ext_resource type="Script" uid="uid://bil6dhhqmlvqq" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cggr04dppu1g4" path="res://scenes/viewer.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bd4rmi6k152ui" path="res://kitbashing_v_1_11_optimized.tscn" id="2_tefeu"]
+[ext_resource type="Script" uid="uid://b3htpmmu4h2xo" path="res://scenes/joystick.gd" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://c0nsjohmqu5no" path="res://scenes/virtual_controller.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://ct0nn7utwqsyl" path="res://scenes/stick.gd" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -10,24 +15,93 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_o5qli")
 
 [sub_resource type="Environment" id="Environment_sugp2"]
-background_mode = 2
 sky = SubResource("Sky_0wfyh")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.26879638, 7.681668e-05, 0.9454048, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
-[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-material = SubResource("StandardMaterial3D_jyhfs")
-size = Vector3(20, 1, 20)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.59035206, 0.72714704, 3.85046e-07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.8384929, 0.45469135, 3.85046e-07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tefeu"]
-material = SubResource("StandardMaterial3D_tbgi4")
-radius = 1.125
-height = 3.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.66, 0, 0.04399996, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.87727684, 0.63815147, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(2.0214916e-06, 0.58414984, 0.6471738, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6926331, 0.0020085925, 0.8827277, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o5qli")
@@ -39,48 +113,283 @@ environment = SubResource("Environment_sugp2")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-current = true
+[node name="kitbashing-v1_11-optimized" parent="." instance=ExtResource("2_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9390602, 0, 50.698742)
 
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.091018, 0)
-current = true
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Floor" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_o5qli")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74335, 1.5, 5.310402)
-mesh = SubResource("CapsuleMesh_tefeu")
-skeleton = NodePath("../Floor")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4802876, 1.5, -4.437931)
-mesh = SubResource("CapsuleMesh_tefeu")
-skeleton = NodePath("../Floor")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.286175, 1.5, -5.06098)
-mesh = SubResource("CapsuleMesh_tefeu")
-skeleton = NodePath("../Floor")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1648026, 1.5, -2.1218996)
-mesh = SubResource("CapsuleMesh_tefeu")
-skeleton = NodePath("../Floor")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9488354, 1.5, 2.950921)
-mesh = SubResource("CapsuleMesh_tefeu")
-skeleton = NodePath("../Floor")
-
-[node name="PermissionXRBtn" type="Button" parent="."]
-offset_left = 492.0
-offset_top = 393.0
-offset_right = 668.0
-offset_bottom = 480.0
+[node name="PermissionXRBtn" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42400002
+anchor_top = 0.134
+anchor_right = 0.42400002
+anchor_bottom = 0.134
+offset_left = 0.55197144
+offset_top = 0.16799927
+offset_right = 176.55197
+offset_bottom = 87.168
 text = "Enable WebXR"
 
-[connection signal="pressed" from="PermissionXRBtn" to="." method="_permission_pressed"]
+[node name="DebugPanel" type="Panel" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 243.0
+offset_bottom = 362.0
+
+[node name="Debug" type="VBoxContainer" parent="Control/DebugPanel"]
+layout_mode = 0
+offset_right = 170.0
+offset_bottom = 270.0
+
+[node name="FoundInstance" type="Label" parent="Control/DebugPanel/Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Found instance? "
+
+[node name="Value" type="Label" parent="Control/DebugPanel/Debug/FoundInstance"]
+layout_mode = 0
+offset_left = 162.0
+offset_right = 197.0
+offset_bottom = 23.0
+
+[node name="NoOfInterfaces" type="Label" parent="Control/DebugPanel/Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Number of interfaces:"
+
+[node name="Value" type="Label" parent="Control/DebugPanel/Debug/NoOfInterfaces"]
+layout_mode = 0
+offset_left = 178.0
+offset_right = 213.0
+offset_bottom = 23.0
+
+[node name="Control2" type="Control" parent="Control/DebugPanel/Debug"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListInterface" type="Label" parent="Control/DebugPanel/Debug/Control2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 27.0
+text = "Detected interfaces:"
+
+[node name="Value" type="Label" parent="Control/DebugPanel/Debug/Control2/ListInterface"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 23.0
+offset_right = 240.0
+offset_bottom = 46.0
+autowrap_mode = 1
+
+[node name="Control" type="Control" parent="Control/DebugPanel/Debug"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReferenceSpaceType" type="Label" parent="Control/DebugPanel/Debug/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 4.0
+offset_right = 173.0
+offset_bottom = 27.0
+text = "Reference Space Type:"
+
+[node name="Value" type="Label" parent="Control/DebugPanel/Debug/Control/ReferenceSpaceType"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 238.0
+offset_bottom = 54.0
+autowrap_mode = 1
+
+[node name="EnabledFeatures" type="Label" parent="Control/DebugPanel/Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enabled Features:"
+
+[node name="Value" type="Label" parent="Control/DebugPanel/Debug/EnabledFeatures"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 238.0
+offset_bottom = 95.0
+autowrap_mode = 1
+
+[node name="SessionStarted" type="Panel" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 196.0
+offset_right = 1142.0
+offset_bottom = 653.0
+
+[node name="Label" type="Label" parent="Control/SessionStarted"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 31.0
+offset_right = 1090.0
+offset_bottom = 406.0
+theme_override_font_sizes/font_size = 91
+text = "SESSION JUST STARTED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Guides" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BottomLeft" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 68.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
+
+[node name="BottomRight" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
+
+[node name="TopRight" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Top" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_right = 34.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0wfyh")
+
+[node name="Right" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
+
+[node name="Bottom" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -66.0
+offset_right = 34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6xl0")
+
+[node name="Left" type="Panel" parent="Control/Guides"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 68.0
+offset_bottom = 33.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tipki")
+
+[node name="VirtualController" type="Control" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.29500002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 39.839996
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_tbgi4")
+
+[node name="Joystick" type="Control" parent="Control/VirtualController"]
+layout_mode = 1
+anchor_left = 0.14792363
+anchor_top = 0.6842889
+anchor_right = 0.14792363
+anchor_bottom = 0.6842889
+offset_left = -91.40802
+offset_top = -90.72003
+offset_right = 91.766174
+offset_bottom = 91.27997
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_sugp2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Stick" type="Control" parent="Control/VirtualController/Joystick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.495995
+offset_right = 37.5
+offset_bottom = 37.496002
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_jyhfs")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1843014, 0)
+current = true
+script = ExtResource("2_0wfyh")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+current = true
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[connection signal="pressed" from="Control/PermissionXRBtn" to="." method="_permission_request"]
