@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://27caatfqv2p1"]
+[gd_scene load_steps=22 format=3 uid="uid://27caatfqv2p1"]
 
 [ext_resource type="Script" uid="uid://bil6dhhqmlvqq" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cggr04dppu1g4" path="res://scenes/viewer.gd" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://bd4rmi6k152ui" path="res://kitbashing_v_1_11_optimized.tscn" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://b3htpmmu4h2xo" path="res://scenes/joystick.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://c0nsjohmqu5no" path="res://scenes/virtual_controller.gd" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://ct0nn7utwqsyl" path="res://scenes/stick.gd" id="4_jyhfs"]
@@ -18,6 +17,28 @@ sky_material = SubResource("ProceduralSkyMaterial_o5qli")
 sky = SubResource("Sky_0wfyh")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+albedo_color = Color(0.7609804, 0.49751937, 0.025663316, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+material = SubResource("StandardMaterial3D_jyhfs")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tefeu"]
+material = SubResource("StandardMaterial3D_tbgi4")
+radius = 1.125
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o6xl0"]
+radius = 1.125
+height = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 content_margin_left = 0.0
@@ -113,8 +134,123 @@ environment = SubResource("Environment_sugp2")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="kitbashing-v1_11-optimized" parent="." instance=ExtResource("2_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9390602, 0, 50.698742)
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_tefeu")
+
+[node name="Beans" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74335, 1.5, 5.310402)
+
+[node name="Bean" type="StaticBody3D" parent="Beans"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean"]
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean2" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8626814, 0, -8.866413)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1196356, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean2"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean3" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.862681, 0, -10.866413)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean3"]
+transform = Transform3D(0.9993981, 0, -0.034690183, 0, 1, 0, 0.034690183, 0, 0.9993981, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean3"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean8" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0382738, 0, -8.044783)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean8"]
+transform = Transform3D(0.9993981, 0, -0.034690183, 0, 1, 0, 0.034690183, 0, 0.9993981, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean8"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean9" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1035013, 9.536743e-07, 2.0451822)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean9"]
+transform = Transform3D(0.9993981, 0, -0.034690183, 0, 1, 0, 0.034690183, 0, 0.9993981, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean9"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean10" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1035013, 9.536743e-07, 2.0451822)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean10"]
+transform = Transform3D(0.9993981, 0, -0.034690183, 0, 1, 0, 0.034690183, 0, 0.9993981, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean10"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean4" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.043008, 0, -2.0097485)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean4"]
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean4"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean5" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.043008, 0, 1.9902515)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean5"]
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean5"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean6" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9569921, 0, -14.009748)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7974463, 0, 0)
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean6"]
+shape = SubResource("CapsuleShape3D_o6xl0")
+
+[node name="Bean7" type="StaticBody3D" parent="Beans"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9569921, 0, 1.9902515)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Beans/Bean7"]
+mesh = SubResource("CapsuleMesh_tefeu")
+skeleton = NodePath("../../../Floor/Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Beans/Bean7"]
+shape = SubResource("CapsuleShape3D_o6xl0")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
